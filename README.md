@@ -120,4 +120,3 @@ Projects can be added via the admin interface or directly in `data/portfolio.jso
 ## License
 
 MIT
-
