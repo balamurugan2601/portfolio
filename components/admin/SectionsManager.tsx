@@ -7,7 +7,7 @@ export default function SectionsManager() {
   const [sections, setSections] = useState<Section[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<string | null>(null);
-  const [editContent, setEditContent] = useState<Section['content']>({});
+  const [editContent, setEditContent] = useState<NonNullable<Section['content']>>({});
 
   useEffect(() => {
     fetchSections();
