@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0f0f0f;
+  --foreground: #ededed;
+  --panel-border: #333333;
+  --panel-background: #1a1a1a;
+  --panel-hover: #252525;
+  --text-primary: #ededed;
+  --text-secondary: #a0a0a0;
+  --matcha: #4d7dff;
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-font {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--matcha);
+  color: #1e1e1e;
+}
