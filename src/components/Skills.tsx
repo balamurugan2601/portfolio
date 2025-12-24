@@ -43,14 +43,11 @@ export default function Skills({ skills, section }: SkillsProps) {
                                 <h3 className="text-2xl font-bold mb-4 text-text-primary border-b-[2px] border-panel-border pb-2 inline-block">{category}</h3>
                                 <div className="space-y-3">
                                     {skills.map((skill) => (
-                                        <div key={skill.id} className="flex items-center justify-between group">
+                                        <div key={skill.id} className="flex items-center group">
                                             <div className="flex items-center gap-3">
                                                 {skill.icon && <span className="text-2xl group-hover:scale-125 transition-transform text-accent">{skill.icon}</span>}
                                                 <span className="text-lg font-bold text-text-secondary">{skill.name}</span>
                                             </div>
-                                            <span className="text-xs font-bold bg-panel-hover text-text-primary px-3 py-1 rounded-md border border-panel-border">
-                                                {skill.level}
-                                            </span>
                                         </div>
                                     ))}
                                 </div>
