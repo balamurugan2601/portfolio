@@ -81,7 +81,7 @@ export default function ProjectDetails() {
                                 >
                                     <div className="relative z-10 flex flex-col gap-4">
                                         <div className="flex justify-between items-center">
-                                            <h3 className="text-xl font-bold leading-tight text-white">Visit Live Site</h3>
+                                            <h3 className="text-xl font-bold leading-tight text-white">Visit Figma File</h3>
                                             <div className="bg-white text-black p-2 rounded-full transition-transform group-hover:rotate-45">
                                                 <ArrowLeft className="rotate-[135deg]" size={18} />
                                             </div>
