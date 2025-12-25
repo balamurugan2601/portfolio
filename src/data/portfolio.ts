@@ -99,7 +99,7 @@ export const portfolioData: PortfolioData = {
             year: "2025",
             tags: ["Figma", "Affinity", "Photoshop", "Illustrator"],
             tagsLabel: "Tools",
-            link: "https://www.figma.com/design/mm6Ei7NdDbTBrJ3yi24apP/Balamurugan-Sundarraj-s-team-library?node-id=1812-38427&t=wKHmVUMMO139v9HK-1",
+            link: "https://www.figma.com/design/Df8MMOMnPwyR49ouDboprY/DevFest-Salem-2025?node-id=0-1&t=rgG4vMqnAe282Z2c-1",
             gallery: [
                 { url: "https://ik.imagekit.io/shyambala/devfest/Main%20Banner%20-%20entry%2012x4.png", description: "Main Dashboard view ensuring high level metrics are visible immediately." },
                 { url: "https://ik.imagekit.io/shyambala/devfest/id.png?updatedAt=1766569862034", description: "Shopping cart interaction flow." },
