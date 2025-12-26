@@ -154,9 +154,26 @@ export default function Hero({ profile }: HeroProps) {
                         >
                             <a
                                 href="https://ik.imagekit.io/shyambala/balamurugan.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-8 py-3 bg-accent rounded-xl text-white font-bold hover:scale-105 transition-transform text-center shadow-lg"
+                                onClick={async (e) => {
+                                    e.preventDefault();
+                                    const url = "https://ik.imagekit.io/shyambala/balamurugan.pdf";
+                                    try {
+                                        const response = await fetch(url);
+                                        const blob = await response.blob();
+                                        const blobUrl = window.URL.createObjectURL(blob);
+                                        const link = document.createElement('a');
+                                        link.href = blobUrl;
+                                        link.download = 'Balamurugan_Resume.pdf'; // Desired file name
+                                        document.body.appendChild(link);
+                                        link.click();
+                                        document.body.removeChild(link);
+                                        window.URL.revokeObjectURL(blobUrl);
+                                    } catch (err) {
+                                        console.error('Download failed', err);
+                                        window.open(url, '_blank');
+                                    }
+                                }}
+                                className="px-8 py-3 bg-accent rounded-xl text-white font-bold hover:scale-105 transition-transform text-center shadow-lg cursor-pointer"
                             >
                                 Download Resume
                             </a>
