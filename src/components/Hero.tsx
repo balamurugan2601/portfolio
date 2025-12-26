@@ -159,12 +159,7 @@ export default function Hero({ profile }: HeroProps) {
                             >
                                 Download Resume
                             </a>
-                            <a
-                                href="#contact"
-                                className="px-8 py-3 bg-panel-background border border-panel-border rounded-xl text-text-primary font-bold hover:bg-panel-hover transition-colors text-center"
-                            >
-                                Get In Touch
-                            </a>
+
                         </motion.div>
                     </div>
 

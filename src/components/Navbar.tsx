@@ -31,33 +31,43 @@ export default function Navbar({ enabledSections }: NavbarProps) {
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b-[1px] border-panel-border py-4' : 'bg-transparent py-4 md:py-6'}`}>
             <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center">
-                    <a href="#hero" className="text-xl font-bold text-text-primary hover:text-text-secondary transition-colors">
-                        Portfolio
+                <div className="flex justify-between items-center relative">
+                    <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="text-2xl font-bold display-font text-text-primary tracking-tighter hover:text-text-secondary transition-colors">
+                        Balaa<span className="text-accent">.me</span>
                     </a>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
+                    {/* Desktop Menu - Centered */}
+                    <div className="hidden md:flex items-center gap-6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         {enabledSections.map((section) => (
-                            section.id !== 'hero' && (
+                            section.id !== 'hero' && section.id !== 'contact' && (
                                 <a
                                     key={section.id}
                                     href={`#${section.id}`}
-                                    className="text-sm font-bold text-text-primary hover:text-accent transition-colors capitalize"
+                                    onClick={(e) => handleLinkClick(e, `#${section.id}`)}
+                                    className="text-xs font-bold text-text-primary hover:text-accent transition-colors uppercase tracking-widest"
                                 >
-                                    {section.type}
+                                    {section.content?.title || section.type}
                                 </a>
                             )
                         ))}
-
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <div className="flex items-center gap-4 md:hidden">
+                    {/* Right Side Actions */}
+                    <div className="flex items-center gap-4">
                         <ThemeToggle />
+
+                        <a
+                            href="#contact"
+                            className="hidden md:flex items-center gap-2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-colors"
+                        >
+                            Hire Me
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </a>
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="p-2 text-text-primary bg-panel-background border border-panel-border rounded-md hover:bg-panel-hover transition-all"
+                            className="md:hidden p-2 text-text-primary bg-panel-background border border-panel-border rounded-md hover:bg-panel-hover transition-all"
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
@@ -76,7 +86,7 @@ export default function Navbar({ enabledSections }: NavbarProps) {
                     >
                         <div className="flex flex-col p-4 gap-2">
                             {enabledSections.map((section) => (
-                                section.id !== 'hero' && (
+                                section.id !== 'hero' && section.id !== 'contact' && (
                                     <a
                                         key={section.id}
                                         href={`#${section.id}`}

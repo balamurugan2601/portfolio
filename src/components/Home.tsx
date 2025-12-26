@@ -39,7 +39,6 @@ export default function Home() {
 
             <footer className="py-8 text-center text-text-secondary text-sm">
                 <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
-                <p className="mt-2 text-xs">Built with Vite & React</p>
             </footer>
         </div>
     );

@@ -25,29 +25,46 @@ export default function Skills({ skills, section }: SkillsProps) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center text-[#1e1e1e]"
+                    className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center text-text-primary"
                 >
                     Skills
                 </motion.h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div className="flex flex-col gap-6 max-w-4xl mx-auto">
                     {Object.entries(skillsByCategory).map(([category, skills], idx) => (
                         <motion.div
                             key={category}
-                            initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-panel-border p-px rounded-lg hover:translate-x-1 hover:-translate-y-1 transition-transform"
+                            className="bg-panel-border p-px rounded-3xl"
                         >
-                            <div className="bg-panel-background rounded-[7px] p-5 md:p-6 h-full">
-                                <h3 className="text-2xl font-bold mb-4 text-text-primary border-b-[2px] border-panel-border pb-2 inline-block">{category}</h3>
-                                <div className="space-y-3">
+                            <div className="bg-panel-background rounded-[23px] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div className="min-w-[140px] text-center md:text-left">
+                                    <h3 className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
+                                        {category}
+                                    </h3>
+
+                                </div>
+
+                                <div className="hidden md:block w-px h-12 bg-panel-border"></div>
+
+                                <div className="flex flex-wrap justify-center md:justify-start gap-4 flex-1">
                                     {skills.map((skill) => (
-                                        <div key={skill.id} className="flex items-center group">
-                                            <div className="flex items-center gap-3">
-                                                {skill.icon && <span className="text-2xl group-hover:scale-125 transition-transform text-accent">{skill.icon}</span>}
-                                                <span className="text-lg font-bold text-text-secondary">{skill.name}</span>
-                                            </div>
+                                        <div
+                                            key={skill.id}
+                                            className="group relative flex items-center justify-center p-2 rounded-xl hover:bg-panel-hover transition-colors duration-300"
+                                            title={skill.name}
+                                        >
+                                            {skill.icon ? (
+                                                <img
+                                                    src={skill.icon}
+                                                    alt={skill.name}
+                                                    className="w-12 h-12 md:w-14 md:h-14 object-contain transition-transform group-hover:scale-110"
+                                                />
+                                            ) : (
+                                                <span className="text-lg font-bold text-text-primary group-hover:text-accent">{skill.name}</span>
+                                            )}
                                         </div>
                                     ))}
                                 </div>

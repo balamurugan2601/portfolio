@@ -3,17 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --background: #0f0f0f;
-  --foreground: #ededed;
-  --panel-border: #333333;
-  --panel-background: #1a1a1a;
-  --panel-hover: #252525;
-  --text-primary: #ededed;
-  --text-secondary: #a0a0a0;
-  --matcha: #4d7dff;
+  /* Light Mode (Default) */
+  --background: #ffffff;
+  --foreground: #0f0f0f;
+  --panel-border: #e5e5e5;
+  --panel-background: #f4f4f5;
+  --panel-hover: #e4e4e7;
+  --text-primary: #0f0f0f;
+  --text-secondary: #52525b;
+  --matcha: #2563eb;
+  /* Darker blue for light mode */
 
   --font-display: 'Bricolage Grotesque', sans-serif;
   --font-body: 'Lato', sans-serif;
+}
+
+.dark {
+  /* High Contrast Dark Mode */
+  --background: #000000;
+  --foreground: #ffffff;
+  --panel-border: #333333;
+  --panel-background: #0a0a0a;
+  /* Darker panel */
+  --panel-hover: #171717;
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d8;
+  --matcha: #4d7dff;
+  /* Original bright blue */
 }
 
 body {

@@ -16,6 +16,7 @@ export default {
                 "text-primary": "var(--text-primary)",
                 "text-secondary": "var(--text-secondary)",
                 accent: "var(--matcha)",
+                "brand-yellow": "#FFF500",
             },
         },
     },

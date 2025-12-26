@@ -82,16 +82,16 @@ export const portfolioData: PortfolioData = {
         { id: "contact", type: "contact", enabled: true, order: 4, content: { title: "Get In Touch" } }
     ],
     skills: [
-        { id: "1", name: "React", category: "Frontend", level: "Intermediate" },
-        { id: "1", name: "Figma", category: "Design", level: "Intermediate" },
-        { id: "1", name: "Photoshop", category: "Design", level: "Intermediate" },
-        { id: "1", name: "Illustrator", category: "Design", level: "Intermediate" },
-        { id: "2", name: "TypeScript", category: "Frontend", level: "Intermediate" },
-        { id: "4", name: "Tailwind CSS", category: "Frontend", level: "Intermediate" },
+        { id: "1", name: "React", category: "Frontend", level: "Intermediate", icon: "https://skillicons.dev/icons?i=react" },
+        { id: "2", name: "TypeScript", category: "Frontend", level: "Intermediate", icon: "https://skillicons.dev/icons?i=ts" },
+        { id: "3", name: "Tailwind CSS", category: "Frontend", level: "Intermediate", icon: "https://skillicons.dev/icons?i=tailwind" },
+        { id: "4", name: "Figma", category: "Design", level: "Intermediate", icon: "https://skillicons.dev/icons?i=figma" },
+        { id: "5", name: "Photoshop", category: "Design", level: "Intermediate", icon: "https://skillicons.dev/icons?i=ps" },
+        { id: "6", name: "Illustrator", category: "Design", level: "Intermediate", icon: "https://skillicons.dev/icons?i=ai" },
     ],
     projects: [
         {
-            id: "1",
+            id: "devfest-salem-2025",
             title: "DevFest Salem 2025",
             description: "Led the end-to-end visual execution for DevFest Salem 2025, translating the DevFest brand into a cohesive on-ground design system. Delivered consistent, production-ready assets across stage, environment, and event materials under real-world constraints.",
             images: ["https://ik.imagekit.io/shyambala/devfest/cover.png"],
@@ -101,12 +101,12 @@ export const portfolioData: PortfolioData = {
             tagsLabel: "Tools",
             link: "https://www.figma.com/design/Df8MMOMnPwyR49ouDboprY/DevFest-Salem-2025?node-id=0-1&t=rgG4vMqnAe282Z2c-1",
             gallery: [
-                { url: "https://ik.imagekit.io/shyambala/devfest/Main%20Banner%20-%20entry%2012x4.png", description: "Main Dashboard view ensuring high level metrics are visible immediately." },
-                { url: "https://ik.imagekit.io/shyambala/devfest/id.png?updatedAt=1766569862034", description: "Shopping cart interaction flow." },
-                { url: "https://ik.imagekit.io/shyambala/devfest/Photo%20Backdrop%208x8.png?updatedAt=1766569867000", description: "Product detail page optimizations for mobile view." },
-                { url: "https://ik.imagekit.io/shyambala/devfest/Photo%20Backdrop%208x8.png?updatedAt=1766569867000", description: "Checkout process streamlined for conversion." },
+                { url: "https://ik.imagekit.io/shyambala/devfest/RVG02678.jpg", description: "PHOTO POINT" }, { url: "https://ik.imagekit.io/shyambala/devfest/swags.png", description: "SWAGS" },
+                { url: "https://ik.imagekit.io/shyambala/devfest/certifcate.png", description: "CERTIFICATE" },
+                { url: "https://ik.imagekit.io/shyambala/devfest/insta%20post.png", description: "INSTAGRAM POST" }, { url: "https://ik.imagekit.io/shyambala/devfest/IMG_20251226_154048.jpg", description: "STAGE BACKDROP" },
+                { url: "https://ik.imagekit.io/shyambala/devfest/id%20card.png", description: "ID CARD" },
             ]
         }
-    
+
     ]
 };
