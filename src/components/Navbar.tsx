@@ -24,8 +24,22 @@ export default function Navbar({ enabledSections }: NavbarProps) {
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
         setMobileMenuOpen(false);
-        const element = document.querySelector(id);
-        element?.scrollIntoView({ behavior: 'smooth' });
+
+        // Small delay to allow the menu to close and layout to stabilize on mobile
+        setTimeout(() => {
+            const element = document.querySelector(id);
+            if (element) {
+                // Header height offset (approx 80px-100px)
+                const offset = 85;
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
     };
 
     return (

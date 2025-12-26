@@ -153,8 +153,9 @@ export default function Hero({ profile }: HeroProps) {
                             className="flex flex-col sm:flex-row gap-4 justify-start mt-8"
                         >
                             <a
-                                href="/balamurugan.pdf"
-                                download="balamurugan.pdf"
+                                href="https://ik.imagekit.io/shyambala/balamurugan.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="px-8 py-3 bg-accent rounded-xl text-white font-bold hover:scale-105 transition-transform text-center shadow-lg"
                             >
                                 Download Resume
