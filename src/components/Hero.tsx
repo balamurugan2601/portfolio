@@ -153,8 +153,8 @@ export default function Hero({ profile }: HeroProps) {
                             className="flex flex-col sm:flex-row gap-4 justify-start mt-8"
                         >
                             <a
-                                href="/Balamurugan.pdf"
-                                download="Balamurugan_Resume.pdf"
+                                href="/balamurugan.pdf"
+                                download="balamurugan.pdf"
                                 className="px-8 py-3 bg-accent rounded-xl text-white font-bold hover:scale-105 transition-transform text-center shadow-lg"
                             >
                                 Download Resume
