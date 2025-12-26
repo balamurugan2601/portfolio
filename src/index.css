@@ -32,6 +32,11 @@
   /* Original bright blue */
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
   color: var(--foreground);
   background-color: var(--background);
