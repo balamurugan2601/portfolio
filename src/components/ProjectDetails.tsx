@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { portfolioData, ProjectImage } from '../data/portfolio';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
-import ThemeToggle from './ThemeToggle';
 
 export default function ProjectDetails() {
     const { id } = useParams();
@@ -38,7 +37,6 @@ export default function ProjectDetails() {
                             </div>
                             <span className="font-medium">Back to Home</span>
                         </button>
-                        <ThemeToggle />
                     </div>
 
                     <div className="text-right">

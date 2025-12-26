@@ -1,4 +1,6 @@
 import React from 'react';
+import { ArrowDown, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import { portfolioData } from '../data/portfolio';
 import Navbar from './Navbar';
 import Hero from './Hero';
@@ -11,6 +13,33 @@ import InteractiveBackground from './InteractiveBackground';
 export default function Home() {
     const { profile, sections, skills, projects } = portfolioData;
     const enabledSections = sections.filter(s => s.enabled).sort((a, b) => a.order - b.order);
+
+    const { theme, toggleTheme } = useTheme();
+
+    if (theme === 'light') {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-background text-text-primary text-center p-4 transition-colors duration-300">
+                <h1 className="text-5xl sm:text-6xl md:text-8xl font-black mb-6">
+                    Light mode? Bold choice.
+                </h1>
+                <p className="text-xl md:text-2xl text-text-secondary mb-12">
+                    Dark mode recommended.
+                </p>
+
+                <div className="flex flex-col items-center gap-4 animate-bounce">
+                    <ArrowDown size={32} className="text-accent" />
+                </div>
+
+                <button
+                    onClick={toggleTheme}
+                    className="mt-4 p-4 rounded-full bg-panel-background border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all shadow-lg hover:scale-110"
+                    aria-label="Switch to Dark Mode"
+                >
+                    <Moon size={32} />
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen text-text-primary">

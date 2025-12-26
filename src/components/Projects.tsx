@@ -24,47 +24,8 @@ const item = {
     show: { opacity: 1, y: 0 }
 };
 
-function useWindowSize() {
-    // Initialize with a default value (e.g., desktop) to avoid hydration mismatch if SSR (though this is likely SPA)
-    const [windowSize, setWindowSize] = useState({
-        width: typeof window !== 'undefined' ? window.innerWidth : 1200,
-    });
-
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-
-        function handleResize() {
-            setWindowSize({
-                width: window.innerWidth,
-            });
-        }
-
-        window.addEventListener("resize", handleResize);
-        handleResize();
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return windowSize;
-}
-
 export default function Projects({ projects, section }: ProjectsProps) {
     const navigate = useNavigate();
-    const size = useWindowSize();
-
-    // Determine number of columns based on width
-    let numColumns = 1;
-    if (size.width >= 768 && size.width < 1024) {
-        numColumns = 2;
-    } else if (size.width >= 1024) {
-        numColumns = 3;
-    }
-
-    // Distribute projects into columns
-    const columns: Project[][] = Array.from({ length: numColumns }, () => []);
-    projects.forEach((project, i) => {
-        columns[i % numColumns].push(project);
-    });
 
     if (!section.enabled) return null;
 
