@@ -137,14 +137,7 @@ export default function Hero({ profile }: HeroProps) {
                             />
                         </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="text-lg md:text-2xl text-text-secondary max-w-xl"
-                        >
-                            {profile.bio}
-                        </motion.div>
+
 
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}

@@ -95,6 +95,13 @@ export const portfolioData: PortfolioData = {
         { id: "5", name: "Photoshop", category: "Design", icon: "https://skillicons.dev/icons?i=ps" },
         { id: "6", name: "Illustrator", category: "Design", icon: "https://skillicons.dev/icons?i=ai" },
         { id: "12", name: "Framer", category: "Design", icon: "https://www.vectorlogo.zone/logos/framer/framer-icon.svg" },
+        { id: "21", name: "Affinity", category: "Design", icon: "/affinity.svg" },
+        { id: "15", name: "ChatGPT", category: "AI Tools", icon: "/chatgpt.svg" },
+        { id: "16", name: "Gemini", category: "AI Tools", icon: "/gemini.svg" },
+        { id: "17", name: "AntiGravity", category: "AI Tools", icon: "/antigravity.svg" },
+        { id: "18", name: "Midjourney", category: "AI Tools", icon: "/midjourney.svg" },
+        { id: "19", name: "Grok", category: "AI Tools", icon: "/grok.svg" },
+        { id: "20", name: "Claude", category: "AI Tools", icon: "/claude.svg" },
     ],
     projects: [
         {
