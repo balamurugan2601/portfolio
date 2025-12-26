@@ -60,7 +60,7 @@ export default function Skills({ skills, section }: SkillsProps) {
                                                 <img
                                                     src={skill.icon}
                                                     alt={skill.name}
-                                                    className="w-12 h-12 md:w-14 md:h-14 object-contain transition-transform group-hover:scale-110"
+                                                    className="w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl transition-transform group-hover:scale-110"
                                                 />
                                             ) : (
                                                 <span className="text-lg font-bold text-text-primary group-hover:text-accent">{skill.name}</span>

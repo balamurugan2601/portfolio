@@ -29,7 +29,6 @@ export interface Skill {
     id: string;
     name: string;
     category: string;
-    level: string; // e.g. "Advanced", "Intermediate"
     icon?: string; // lucide icon name or image url
 }
 
@@ -82,12 +81,20 @@ export const portfolioData: PortfolioData = {
         { id: "contact", type: "contact", enabled: true, order: 4, content: { title: "Get In Touch" } }
     ],
     skills: [
-        { id: "1", name: "React", category: "Frontend", level: "Intermediate", icon: "https://skillicons.dev/icons?i=react" },
-        { id: "2", name: "TypeScript", category: "Frontend", level: "Intermediate", icon: "https://skillicons.dev/icons?i=ts" },
-        { id: "3", name: "Tailwind CSS", category: "Frontend", level: "Intermediate", icon: "https://skillicons.dev/icons?i=tailwind" },
-        { id: "4", name: "Figma", category: "Design", level: "Intermediate", icon: "https://skillicons.dev/icons?i=figma" },
-        { id: "5", name: "Photoshop", category: "Design", level: "Intermediate", icon: "https://skillicons.dev/icons?i=ps" },
-        { id: "6", name: "Illustrator", category: "Design", level: "Intermediate", icon: "https://skillicons.dev/icons?i=ai" },
+        { id: "13", name: "HTML5", category: "Frontend", icon: "https://skillicons.dev/icons?i=html" },
+        { id: "14", name: "CSS3", category: "Frontend", icon: "https://skillicons.dev/icons?i=css" },
+        { id: "1", name: "React", category: "Frontend", icon: "https://skillicons.dev/icons?i=react" },
+        { id: "2", name: "TypeScript", category: "Frontend", icon: "https://skillicons.dev/icons?i=ts" },
+        { id: "3", name: "Tailwind CSS", category: "Frontend", icon: "https://skillicons.dev/icons?i=tailwind" },
+        { id: "7", name: "VS Code", category: "Tools", icon: "https://skillicons.dev/icons?i=vscode" },
+        { id: "8", name: "Cursor", category: "Tools", icon: "https://unpkg.com/@lobehub/icons-static-png@latest/dark/cursor.png" },
+        { id: "9", name: "Eclipse", category: "Tools", icon: "https://skillicons.dev/icons?i=eclipse" },
+        { id: "10", name: "Git", category: "Tools", icon: "https://skillicons.dev/icons?i=git" },
+        { id: "11", name: "GitHub", category: "Tools", icon: "https://skillicons.dev/icons?i=github" },
+        { id: "4", name: "Figma", category: "Design", icon: "https://skillicons.dev/icons?i=figma" },
+        { id: "5", name: "Photoshop", category: "Design", icon: "https://skillicons.dev/icons?i=ps" },
+        { id: "6", name: "Illustrator", category: "Design", icon: "https://skillicons.dev/icons?i=ai" },
+        { id: "12", name: "Framer", category: "Design", icon: "https://www.vectorlogo.zone/logos/framer/framer-icon.svg" },
     ],
     projects: [
         {
