@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '../data/portfolio';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
 interface NavbarProps {
@@ -10,30 +9,28 @@ interface NavbarProps {
 
 export default function Navbar({ enabledSections }: NavbarProps) {
     const [activeSection, setActiveSection] = useState<string>('hero');
-
     const [scrolled, setScrolled] = useState(false);
-
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            setScrolled(scrollY > 50);
+            setScrolled(window.scrollY > 50);
 
-            // Determine active section
             const sections = enabledSections.map(s => s.id);
             if (!sections.includes('hero')) sections.unshift('hero');
             if (sections.includes('contact')) sections.push('contact');
 
             let current = 'hero';
             for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // Midpoint check
-                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                        current = section;
-                        break;
-                    }
+                const el = document.getElementById(section);
+                if (!el) continue;
+
+                const rect = el.getBoundingClientRect();
+                if (
+                    rect.top <= window.innerHeight / 2 &&
+                    rect.bottom >= window.innerHeight / 2
+                ) {
+                    current = section;
+                    break;
                 }
             }
             setActiveSection(current);
@@ -43,40 +40,44 @@ export default function Navbar({ enabledSections }: NavbarProps) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [enabledSections]);
 
-    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    const handleLinkClick = (
+        e: React.MouseEvent<HTMLAnchorElement>,
+        id: string
+    ) => {
         e.preventDefault();
-        const targetId = id.replace('#', '');
-        setActiveSection(targetId);
+        setActiveSection(id.replace('#', ''));
 
-        const element = document.querySelector(id);
-        if (element) {
-            const offset = 80;
-            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-            const offsetPosition = elementPosition - offset;
+        const el = document.querySelector(id);
+        if (!el) return;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+        const offset = 80;
+        const y = el.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
     };
 
-
-
-    // Prepare nav items
-    const navItems = enabledSections.filter(s => s.id !== 'hero' && s.id !== 'contact');
-
-    const activeTab = activeSection;
+    const navItems = enabledSections.filter(
+        s => s.id !== 'hero' && s.id !== 'contact'
+    );
 
     return (
         <>
-            {/* Top Bar - Minimal */}
-            <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 pointer-events-none ${scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100 py-6'}`}>
-                <div className="container mx-auto px-6 relative flex justify-between items-center pointer-events-auto">
-                    {/* Logo */}
-                    <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="hover:opacity-80 transition-opacity text-text-primary">
+            {/* Top Header */}
+            <nav
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-none ${
+                    scrolled
+                        ? '-translate-y-full opacity-0'
+                        : 'translate-y-0 opacity-100 py-6'
+                }`}
+            >
+                <div className="container mx-auto px-6 flex justify-between items-center pointer-events-auto">
+                    <a
+                        href="#hero"
+                        onClick={(e) => handleLinkClick(e, '#hero')}
+                        className="hover:opacity-80 transition-opacity text-text-primary"
+                    >
                         <div
-                            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-text-primary transition-all"
+                            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-text-primary"
                             style={{
                                 maskImage: 'url(/icon/512.svg)',
                                 WebkitMaskImage: 'url(/icon/512.svg)',
@@ -85,94 +86,131 @@ export default function Navbar({ enabledSections }: NavbarProps) {
                                 maskRepeat: 'no-repeat',
                                 WebkitMaskRepeat: 'no-repeat',
                                 maskPosition: 'center',
-                                WebkitMaskPosition: 'center'
+                                WebkitMaskPosition: 'center',
                             }}
                         />
                     </a>
 
-                    {/* Right Side Actions (Hire Me) */}
-                    <div className="flex items-center gap-4">
-                        <a
-                            href="#contact"
-                            onClick={(e) => handleLinkClick(e, '#contact')}
-                            className="flex items-center gap-2 bg-text-primary text-background px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-lg"
-                        >
-                            Hire Me
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
+                    <a
+                        href="#contact"
+                        onClick={(e) => handleLinkClick(e, '#contact')}
+                        className="flex items-center gap-2 bg-text-primary text-background px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-90"
+                    >
+                        Hire Me
+                        <svg width="12" height="12" viewBox="0 0 12 12">
+                            <path
+                                d="M1 11L11 1M11 1H3M11 1V9"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </a>
                 </div>
             </nav>
 
-            {/* Floating Dock Container */}
-            <div className="nav sticky bottom-5 z-50 mx-auto mb-5 rounded-full md:fixed md:bottom-8 md:left-1/2 md:mb-0 md:-translate-x-1/2 flex items-center justify-center pointer-events-none">
+            {/* Floating Bottom Dock */}
+            <div className="fixed bottom-12 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 z-50 w-full max-w-[calc(100vw-32px)] md:w-auto flex justify-center pointer-events-none pb-[env(safe-area-inset-bottom)]">
+                <nav
+                    className="
+                    border-panel-border bg-panel-background shadow-card
+                    flex items-center flex-nowrap
+                    rounded-full border-[2px]
+                    px-2 py-1
+                    pointer-events-auto
+                    w-full md:w-auto
+                    max-w-full
+                    justify-center
+                    overflow-hidden
+                    "
+                >
+                    <NavItem
+                        label="Home"
+                        href="#hero"
+                        active={activeSection === 'hero'}
+                        onClick={handleLinkClick}
+                    />
 
-                <div className="relative flex items-center">
-                    <nav className="border-panel-border bg-panel-background shadow-card relative z-1 flex items-center gap-2 rounded-full border-[2px] p-1 pointer-events-auto">
+                    {navItems.map(section => (
+                        <NavItem
+                            key={section.id}
+                            label={section.content?.title || section.type}
+                            href={`#${section.id}`}
+                            active={activeSection === section.id}
+                            onClick={handleLinkClick}
+                        />
+                    ))}
 
-                        {/* Home */}
-                        <a
-                            href="#hero"
-                            onClick={(e) => handleLinkClick(e, '#hero')}
-                            className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'hero' ? 'text-background' : 'text-text-primary hover:text-text-primary'}`}
-                        >
-                            {activeTab === 'hero' && (
-                                <motion.div
-                                    layoutId="active-pill"
-                                    className="absolute inset-0 bg-accent rounded-full -z-10"
-                                    transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+                    <NavItem
+                        label="Contact"
+                        href="#contact"
+                        active={activeSection === 'contact'}
+                        onClick={handleLinkClick}
+                    />
 
-                                />
-                            )}
-                            <span className="relative z-10">Home</span>
-                        </a>
+                    <div className="w-px h-4 bg-panel-border opacity-40 mx-1 shrink-0" />
 
-                        {/* Dynamic Sections */}
-                        {navItems.map((section) => (
-                            <a
-                                key={section.id}
-                                href={`#${section.id}`}
-                                onClick={(e) => handleLinkClick(e, `#${section.id}`)}
-                                className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === section.id ? 'text-background' : 'text-text-primary hover:text-text-primary'}`}
-                            >
-                                {activeTab === section.id && (
-                                    <motion.div
-                                        layoutId="active-pill"
-                                        className="absolute inset-0 bg-accent rounded-full -z-10"
-                                        transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-                                    />
-                                )}
-                                <span className="relative z-10">{section.content?.title || section.type}</span>
-                            </a>
-                        ))}
-
-                        {/* Contact */}
-                        <a
-                            href="#contact"
-                            onClick={(e) => handleLinkClick(e, '#contact')}
-                            className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'contact' ? 'text-background' : 'text-text-primary hover:text-text-primary'}`}
-                        >
-                            {activeTab === 'contact' && (
-                                <motion.div
-                                    layoutId="active-pill"
-                                    className="absolute inset-0 bg-accent rounded-full -z-10"
-                                    transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-                                />
-                            )}
-                            <span className="relative z-10">Contact</span>
-                        </a>
-
-                        {/* Theme Toggle */}
-                        <div className="px-1 relative z-10">
-                            <ThemeToggle />
-                        </div>
-                    </nav>
-
-
-                </div>
+                    <div className="flex items-center justify-center shrink-0 px-1.5">
+                        <ThemeToggle />
+                    </div>
+                </nav>
             </div>
         </>
+    );
+}
+
+/* ---------------------------------- */
+/* Nav Item (Micro-polished)           */
+/* ---------------------------------- */
+
+function NavItem({
+    label,
+    href,
+    active,
+    onClick,
+}: {
+    label: string;
+    href: string;
+    active: boolean;
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>, id: string) => void;
+}) {
+    return (
+        <a
+            href={href}
+            onClick={(e) => onClick(e, href)}
+            className="
+            relative flex items-center justify-center
+            px-3 py-1.5 md:px-4 md:py-2
+            rounded-full
+            text-xs md:text-sm
+            font-medium
+            whitespace-nowrap
+            shrink min-w-0
+            transition-colors
+            text-text-primary
+            "
+        >
+            {active && (
+                <motion.div
+                    layoutId="active-pill"
+                    className="
+                        absolute inset-0
+                        bg-accent rounded-full
+                        -translate-y-[0.5px]
+                    "
+                    transition={{
+                        type: 'spring',
+                        stiffness: 500,
+                        damping: 40,
+                        mass: 1,
+                    }}
+                />
+            )}
+
+            <span className={`relative z-10 ${active ? 'text-background' : ''}`}>
+                {label}
+            </span>
+        </a>
     );
 }

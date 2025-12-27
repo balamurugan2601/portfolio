@@ -30,7 +30,7 @@ export default function Projects({ projects, section }: ProjectsProps) {
     if (!section.enabled) return null;
 
     return (
-        <section id="projects" className="py-12 md:py-20 px-4 relative">
+        <section id="projects" className="py-12 md:py-20 px-4 md:px-6 lg:px-8 relative">
             <div className="container mx-auto max-w-6xl">
                 <div className="text-center mb-12">
                     <motion.h2

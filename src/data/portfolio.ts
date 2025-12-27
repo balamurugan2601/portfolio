@@ -76,8 +76,8 @@ export const portfolioData: PortfolioData = {
     sections: [
         { id: "hero", type: "hero", enabled: true, order: 0, content: { title: "Hi, I'm John" } },
         { id: "about", type: "about", enabled: true, order: 1, content: { title: "About Me" } },
-        { id: "skills", type: "skills", enabled: true, order: 2, content: { title: "My Skills" } },
-        { id: "projects", type: "projects", enabled: true, order: 3, content: { title: "Featured Projects" } },
+        { id: "skills", type: "skills", enabled: true, order: 2, content: { title: "Skills" } },
+        { id: "projects", type: "projects", enabled: true, order: 3, content: { title: "Projects" } },
         { id: "contact", type: "contact", enabled: true, order: 4, content: { title: "Get In Touch" } }
     ],
     skills: [

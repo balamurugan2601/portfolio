@@ -19,7 +19,7 @@ export default function Skills({ skills, section }: SkillsProps) {
     }, {} as Record<string, typeof skills>);
 
     return (
-        <section id="skills" className="py-12 md:py-20 px-4">
+        <section id="skills" className="py-12 md:py-20 px-4 md:px-6 lg:px-8">
             <div className="container mx-auto max-w-6xl">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}

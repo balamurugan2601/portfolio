@@ -36,10 +36,60 @@ export default function Contact({ profile, section }: ContactProps) {
     ].filter(link => link.url);
 
     return (
-        <section id="contact" className="py-12 md:py-20 px-4">
+        <section id="contact" className="py-12 md:py-20 px-4 md:px-6 lg:px-8">
             <div className="container mx-auto max-w-5xl">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Right Column: Existing Contact Card */}
+                    <div className="lg:col-span-2 h-full">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            className="bg-panel-border p-[2px] rounded-[10px] shadow-card relative h-full flex flex-col"
+                        >
+                            <div className="bg-panel-background rounded-[9px] relative z-1 p-8 md:p-12 text-center h-full flex flex-col justify-center items-center">
+                                <h2 className="text-3xl md:text-5xl font-bold mb-4 text-text-primary">
+                                    {section.content?.title || 'Get In Touch'}
+                                </h2>
+                                <p className="text-base md:text-lg text-text-secondary mb-10 max-w-xl mx-auto font-medium leading-relaxed">
+                                    {section.content?.description || "Let's work together on your next project"}
+                                </p>
 
+                                <div className="space-y-8 w-full max-w-md">
+                                    <motion.a
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        href={`mailto:${profile.email}`}
+                                        className="flex w-full items-center justify-center gap-3 px-6 py-4 bg-accent text-background rounded-xl font-bold text-lg hover:brightness-110 transition-all shadow-lg mx-auto"
+                                    >
+                                        <Mail size={22} />
+                                        <span>{profile.email}</span>
+                                    </motion.a>
+
+                                    <div className="flex flex-wrap items-center justify-center gap-4">
+                                        {socialLinks.map((link, idx) => {
+                                            const Icon = link.icon;
+                                            return (
+                                                <motion.a
+                                                    key={link.name}
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    transition={{ delay: idx * 0.1 }}
+                                                    whileHover={{ y: -5 }}
+                                                    href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="p-3 bg-panel-hover rounded-xl text-text-primary hover:text-background hover:bg-panel-border transition-all border border-transparent hover:border-panel-border"
+                                                >
+                                                    <Icon size={24} />
+                                                </motion.a>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
                     {/* Left Column: Decorative Widgets */}
                     <div className="flex flex-col gap-4 lg:col-span-1">
 
@@ -121,57 +171,7 @@ export default function Contact({ profile, section }: ContactProps) {
 
                     </div>
 
-                    {/* Right Column: Existing Contact Card */}
-                    <div className="lg:col-span-2 h-full">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            className="bg-panel-border p-[2px] rounded-[10px] shadow-card relative h-full flex flex-col"
-                        >
-                            <div className="bg-panel-background rounded-[9px] relative z-1 p-8 md:p-12 text-center h-full flex flex-col justify-center items-center">
-                                <h2 className="text-3xl md:text-5xl font-bold mb-4 text-text-primary">
-                                    {section.content?.title || 'Get In Touch'}
-                                </h2>
-                                <p className="text-base md:text-lg text-text-secondary mb-10 max-w-xl mx-auto font-medium leading-relaxed">
-                                    {section.content?.description || "Let's work together on your next project"}
-                                </p>
 
-                                <div className="space-y-8 w-full max-w-md">
-                                    <motion.a
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        href={`mailto:${profile.email}`}
-                                        className="flex w-full items-center justify-center gap-3 px-6 py-4 bg-accent text-background rounded-xl font-bold text-lg hover:brightness-110 transition-all shadow-lg mx-auto"
-                                    >
-                                        <Mail size={22} />
-                                        <span>{profile.email}</span>
-                                    </motion.a>
-
-                                    <div className="flex flex-wrap items-center justify-center gap-4">
-                                        {socialLinks.map((link, idx) => {
-                                            const Icon = link.icon;
-                                            return (
-                                                <motion.a
-                                                    key={link.name}
-                                                    initial={{ opacity: 0, y: 10 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    transition={{ delay: idx * 0.1 }}
-                                                    whileHover={{ y: -5 }}
-                                                    href={link.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="p-3 bg-panel-hover rounded-xl text-text-primary hover:text-background hover:bg-panel-border transition-all border border-transparent hover:border-panel-border"
-                                                >
-                                                    <Icon size={24} />
-                                                </motion.a>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
                 </div>
             </div>
         </section>

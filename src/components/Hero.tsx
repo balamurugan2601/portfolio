@@ -109,7 +109,7 @@ export default function Hero({ profile }: HeroProps) {
                 </defs>
             </svg>
 
-            <div className="container mx-auto px-4 z-10">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 z-10">
                 <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
 
                     {/* Left Column: Text Content */}
