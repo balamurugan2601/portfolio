@@ -2,6 +2,7 @@ export interface Profile {
     name: string;
     image?: string; // URL to profile image
     titles: string[]; // Changed from single title to array for morphing effect
+    bioStatement: string;
     bio: string;
     email: string;
     social: {
@@ -65,7 +66,8 @@ export const portfolioData: PortfolioData = {
         name: "Balamurugan",
         image: "https://ik.imagekit.io/shyambala/bala?updatedAt=1766568944112",
         titles: ["Graphic Designer", "Visual Storyteller", "Illustrator", "Vibe Coder"],
-        bio: "Passionate in making the design to communicate",
+        bioStatement: "Passionate about making design communicate.",
+        bio: "My design philosophy revolves around clarity and intention. I create interfaces that feel natural to use, where hierarchy, spacing, and visual structure guide users effortlessly. Every design decision is deliberate—focused on reducing friction and delivering experiences that are intuitive, practical, and effective in real-world use.",
         email: "shyamsusi2005@gmail.com",
         social: {
             github: "https://github.com/balamurugan2601",

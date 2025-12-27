@@ -23,7 +23,12 @@ export default function About({ profile, section }: AboutProps) {
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-center text-text-primary">
                             {section.content?.title || 'About Me'}
                         </h2>
-                        <p className="text-base md:text-xl text-text-secondary leading-relaxed text-center">
+                        {profile.bioStatement && (
+                            <h2 className="text-xl md:text-2xl font-semibold mb-6 text-center text-text-primary max-w-3xl mx-auto">
+                                {profile.bioStatement}
+                            </h2>
+                        )}
+                        <p className="text-base md:text-lg text-text-secondary leading-relaxed text-center max-w-3xl mx-auto">
                             {profile.bio}
                         </p>
                     </div>
