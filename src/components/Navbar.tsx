@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Section } from '../data/portfolio';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 interface NavbarProps {
@@ -9,128 +9,170 @@ interface NavbarProps {
 }
 
 export default function Navbar({ enabledSections }: NavbarProps) {
+    const [activeSection, setActiveSection] = useState<string>('hero');
+
     const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            const scrollY = window.scrollY;
+            setScrolled(scrollY > 50);
+
+            // Determine active section
+            const sections = enabledSections.map(s => s.id);
+            if (!sections.includes('hero')) sections.unshift('hero');
+            if (sections.includes('contact')) sections.push('contact');
+
+            let current = 'hero';
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // Midpoint check
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        current = section;
+                        break;
+                    }
+                }
+            }
+            setActiveSection(current);
         };
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [enabledSections]);
 
-    // Close menu when clicking a link
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
-        setMobileMenuOpen(false);
+        const targetId = id.replace('#', '');
+        setActiveSection(targetId);
 
-        // Small delay to allow the menu to close and layout to stabilize on mobile
-        setTimeout(() => {
-            const element = document.querySelector(id);
-            if (element) {
-                // Header height offset (approx 80px-100px)
-                const offset = 85;
-                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = elementPosition - offset;
+        const element = document.querySelector(id);
+        if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - offset;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }, 100);
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     };
 
+
+
+    // Prepare nav items
+    const navItems = enabledSections.filter(s => s.id !== 'hero' && s.id !== 'contact');
+
+    const activeTab = activeSection;
+
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b-[1px] border-panel-border py-4' : 'bg-transparent py-4 md:py-6'}`}>
-            <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center relative">
-                    <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="text-2xl font-bold display-font text-text-primary tracking-tighter hover:text-text-secondary transition-colors">
-                        Balaa<span className="text-accent">.me</span>
+        <>
+            {/* Top Bar - Minimal */}
+            <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 pointer-events-none ${scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100 py-6'}`}>
+                <div className="container mx-auto px-6 relative flex justify-between items-center pointer-events-auto">
+                    {/* Logo */}
+                    <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="hover:opacity-80 transition-opacity text-text-primary">
+                        <div
+                            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-text-primary transition-all"
+                            style={{
+                                maskImage: 'url(/icon/512.svg)',
+                                WebkitMaskImage: 'url(/icon/512.svg)',
+                                maskSize: 'contain',
+                                WebkitMaskSize: 'contain',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskPosition: 'center',
+                                WebkitMaskPosition: 'center'
+                            }}
+                        />
                     </a>
 
-                    {/* Desktop Menu - Centered */}
-                    <div className="hidden md:flex items-center gap-6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        {enabledSections.map((section) => (
-                            section.id !== 'hero' && section.id !== 'contact' && (
-                                <a
-                                    key={section.id}
-                                    href={`#${section.id}`}
-                                    onClick={(e) => handleLinkClick(e, `#${section.id}`)}
-                                    className="text-xs font-bold text-text-primary hover:text-accent transition-colors uppercase tracking-widest"
-                                >
-                                    {section.content?.title || section.type}
-                                </a>
-                            )
-                        ))}
-                    </div>
-
-                    {/* Right Side Actions */}
+                    {/* Right Side Actions (Hire Me) */}
                     <div className="flex items-center gap-4">
-                        <ThemeToggle />
-
                         <a
                             href="#contact"
                             onClick={(e) => handleLinkClick(e, '#contact')}
-                            className="hidden md:flex items-center gap-2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-colors"
+                            className="flex items-center gap-2 bg-text-primary text-background px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-lg"
                         >
                             Hire Me
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </a>
-                        <button
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="md:hidden p-2 text-text-primary bg-panel-background border border-panel-border rounded-md hover:bg-panel-hover transition-all"
-                        >
-                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
                     </div>
                 </div>
-            </div>
+            </nav>
 
-            {/* Mobile Menu Dropdown */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-background border-b border-panel-border absolute top-full left-0 right-0 overflow-hidden shadow-2xl"
-                    >
-                        <div className="flex flex-col p-6 gap-4">
-                            {enabledSections.map((section) => (
-                                section.id !== 'hero' && section.id !== 'contact' && (
-                                    <a
-                                        key={section.id}
-                                        href={`#${section.id}`}
-                                        onClick={(e) => handleLinkClick(e, `#${section.id}`)}
-                                        className="text-sm font-bold text-text-primary py-3 px-4 hover:bg-panel-hover hover:text-accent rounded-xl transition-all uppercase tracking-widest flex items-center justify-between group"
-                                    >
-                                        {section.content?.title || section.type}
-                                        <ArrowRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-accent" />
-                                    </a>
-                                )
-                            ))}
+            {/* Floating Dock Container */}
+            <div className="nav sticky bottom-5 z-50 mx-auto mb-5 rounded-full md:fixed md:bottom-8 md:left-1/2 md:mb-0 md:-translate-x-1/2 flex items-center justify-center pointer-events-none">
 
-                            <div className="h-px bg-panel-border my-2" />
+                <div className="relative flex items-center">
+                    <nav className="border-panel-border bg-panel-background shadow-card relative z-1 flex items-center gap-2 rounded-full border-[2px] p-1 pointer-events-auto">
 
+                        {/* Home */}
+                        <a
+                            href="#hero"
+                            onClick={(e) => handleLinkClick(e, '#hero')}
+                            className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'hero' ? 'text-background' : 'text-text-primary hover:text-text-primary'}`}
+                        >
+                            {activeTab === 'hero' && (
+                                <motion.div
+                                    layoutId="active-pill"
+                                    className="absolute inset-0 bg-accent rounded-full -z-10"
+                                    transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+
+                                />
+                            )}
+                            <span className="relative z-10">Home</span>
+                        </a>
+
+                        {/* Dynamic Sections */}
+                        {navItems.map((section) => (
                             <a
-                                href="#contact"
-                                onClick={(e) => handleLinkClick(e, '#contact')}
-                                className="flex items-center justify-center gap-2 bg-accent text-white px-6 py-4 rounded-xl font-bold text-sm uppercase tracking-wider hover:opacity-90 transition-colors w-full"
+                                key={section.id}
+                                href={`#${section.id}`}
+                                onClick={(e) => handleLinkClick(e, `#${section.id}`)}
+                                className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === section.id ? 'text-background' : 'text-text-primary hover:text-text-primary'}`}
                             >
-                                Hire Me
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                {activeTab === section.id && (
+                                    <motion.div
+                                        layoutId="active-pill"
+                                        className="absolute inset-0 bg-accent rounded-full -z-10"
+                                        transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+                                    />
+                                )}
+                                <span className="relative z-10">{section.content?.title || section.type}</span>
                             </a>
+                        ))}
+
+                        {/* Contact */}
+                        <a
+                            href="#contact"
+                            onClick={(e) => handleLinkClick(e, '#contact')}
+                            className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'contact' ? 'text-background' : 'text-text-primary hover:text-text-primary'}`}
+                        >
+                            {activeTab === 'contact' && (
+                                <motion.div
+                                    layoutId="active-pill"
+                                    className="absolute inset-0 bg-accent rounded-full -z-10"
+                                    transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+                                />
+                            )}
+                            <span className="relative z-10">Contact</span>
+                        </a>
+
+                        {/* Theme Toggle */}
+                        <div className="px-1 relative z-10">
+                            <ThemeToggle />
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </nav>
+                    </nav>
+
+
+                </div>
+            </div>
+        </>
     );
 }
-

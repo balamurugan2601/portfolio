@@ -117,7 +117,7 @@ export default function Hero({ profile }: HeroProps) {
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-5xl sm:text-6xl md:text-8xl font-black mb-4 text-text-primary"
+                            className="text-5xl sm:text-6xl md:text-8xl font-black mb-4 text-text-primary display-font"
                         >
                             {profile.name}
                         </motion.h1>
@@ -129,11 +129,11 @@ export default function Hero({ profile }: HeroProps) {
                         >
                             <span
                                 ref={text1Ref}
-                                className="absolute text-4xl sm:text-5xl md:text-7xl font-bold text-text-primary"
+                                className="absolute text-4xl sm:text-5xl md:text-7xl font-bold text-text-primary display-font"
                             />
                             <span
                                 ref={text2Ref}
-                                className="absolute text-4xl sm:text-5xl md:text-7xl font-bold text-text-primary"
+                                className="absolute text-4xl sm:text-5xl md:text-7xl font-bold text-text-primary display-font"
                             />
                         </div>
 
@@ -166,7 +166,7 @@ export default function Hero({ profile }: HeroProps) {
                                         window.open(url, '_blank');
                                     }
                                 }}
-                                className="px-8 py-3 bg-accent rounded-xl text-white font-bold hover:scale-105 transition-transform text-center shadow-lg cursor-pointer"
+                                className="px-8 py-3 bg-accent rounded-xl text-background font-bold hover:scale-105 transition-transform text-center shadow-lg cursor-pointer"
                             >
                                 Download Resume
                             </a>
@@ -182,8 +182,8 @@ export default function Hero({ profile }: HeroProps) {
                         className="w-full md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0"
                     >
                         {/* Panel Style Image Wrapper */}
-                        <div className="relative w-60 h-60 sm:w-100 sm:h-200 md:w-[400px] md:h-[400px] rounded-full md:rounded-3xl bg-panel-border p-1">
-                            <div className="w-full h-full rounded-full md:rounded-[22px] overflow-hidden bg-panel-background">
+                        <div className="relative w-60 h-60 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] rounded-[10px] bg-panel-border p-[2px] shadow-card">
+                            <div className="w-full h-full rounded-[9px] overflow-hidden bg-panel-background">
                                 {profile.image ? (
                                     <img
                                         src={profile.image}

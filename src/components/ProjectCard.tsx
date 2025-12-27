@@ -19,16 +19,16 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     return (
         <button
             onClick={() => onClick(project)}
-            className="relative flex w-full rounded-lg md:rounded-2xl group text-left"
+            className="relative flex w-full rounded-[10px] group text-left"
             type="button"
         >
             <article
-                className="bg-panel-border relative rounded-lg p-px md:rounded-2xl h-full w-full transition-all duration-300 transform"
+                className="bg-panel-border relative rounded-[10px] p-[2px] shadow-card h-full w-full transition-all duration-300 transform"
                 style={{ "--title-height": titleHeight } as React.CSSProperties}
             >
-                <div className="card bg-panel-background text-text-primary relative z-1 rounded-[7px] p-1 md:rounded-[15px] h-full w-full overflow-hidden">
+                <div className="card bg-panel-background text-text-primary relative z-1 rounded-[9px] p-3 h-full w-full overflow-hidden flex flex-col">
                     {/* Content Container */}
-                    <div className="h-full w-full translate-y-0 overflow-hidden rounded transition-all duration-300 group-hover:-translate-y-[calc(var(--title-height)*1px)] md:rounded-lg">
+                    <div className="h-full w-full translate-y-0 overflow-hidden rounded-[5px] transition-all duration-300 group-hover:-translate-y-[calc(var(--title-height)*1px)]">
 
                         {/* Image Container */}
                         <div className="relative w-full aspect-[4/3] overflow-hidden rounded transition-all duration-300 group-hover:translate-y-[calc(var(--title-height)*1px)] md:rounded-xl">

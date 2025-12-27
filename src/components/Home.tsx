@@ -32,7 +32,7 @@ export default function Home() {
 
                 <button
                     onClick={toggleTheme}
-                    className="mt-4 p-4 rounded-full bg-panel-background border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all shadow-lg hover:scale-110"
+                    className="mt-4 p-4 rounded-full bg-panel-background border border-accent text-accent hover:bg-accent hover:text-background transition-all shadow-lg hover:scale-110"
                     aria-label="Switch to Dark Mode"
                 >
                     <Moon size={32} />

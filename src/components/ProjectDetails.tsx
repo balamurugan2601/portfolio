@@ -23,7 +23,7 @@ export default function ProjectDetails() {
     const gallery = project.gallery || [];
 
     return (
-        <div className="min-h-screen bg-background text-text-primary font-sans p-4 md:p-8">
+        <div className="min-h-screen bg-background text-text-primary p-4 md:p-8">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
@@ -53,8 +53,8 @@ export default function ProjectDetails() {
 
                         // Create InfoBlock component/element
                         const InfoBlock = (
-                            <div key="info-block" className="break-inside-avoid mb-6 bg-panel-border p-px rounded-lg">
-                                <div className="bg-panel-background rounded-[7px] p-8 flex flex-col gap-8">
+                            <div key="info-block" className="break-inside-avoid mb-6 bg-panel-border p-[2px] rounded-[10px] shadow-card relative">
+                                <div className="bg-panel-background rounded-[9px] p-8 flex flex-col gap-8 relative z-1">
                                     {/* About Section */}
                                     <div>
                                         <h3 className="text-lg font-bold uppercase tracking-wider mb-4 text-text-secondary">About Project</h3>
@@ -67,7 +67,7 @@ export default function ProjectDetails() {
                                             <h3 className="text-lg font-bold uppercase tracking-wider mb-4 text-text-secondary">{project.tagsLabel || 'Technologies'}</h3>
                                             <div className="flex flex-wrap gap-2">
                                                 {project.tags.map(tag => (
-                                                    <span key={tag} className="px-3 py-1 bg-panel-hover rounded-lg text-sm font-bold text-text-primary border border-panel-border">
+                                                    <span key={tag} className="px-3 py-1 bg-panel-hover rounded-lg text-sm font-bold text-text-primary border-[2px] border-panel-border">
                                                         {tag}
                                                     </span>
                                                 ))}
@@ -78,15 +78,14 @@ export default function ProjectDetails() {
                                     {/* Visit Link Section */}
                                     {project.link && (
                                         <a
-                                            href={project.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block w-full bg-[#111] text-white rounded-lg p-6 hover:bg-[#1a1a1a] transition-colors shadow-lg group cursor-pointer relative overflow-hidden border border-[#333] mt-2"
+                                            className="block w-full bg-foreground text-background rounded-[10px] p-6 hover:opacity-90 transition-opacity shadow-lg group cursor-pointer relative overflow-hidden border-[2px] border-panel-border mt-2"
                                         >
                                             <div className="relative z-10 flex flex-col gap-4">
                                                 <div className="flex justify-between items-center">
-                                                    <h3 className="text-xl font-bold leading-tight text-white">Visit Figma File</h3>
-                                                    <div className="bg-white text-black p-2 rounded-full transition-transform group-hover:rotate-45">
+                                                    <h3 className="text-xl font-bold leading-tight text-background">Visit Figma File</h3>
+                                                    <div className="bg-background text-foreground p-2 rounded-full transition-transform group-hover:rotate-45">
                                                         <ArrowLeft className="rotate-[135deg]" size={18} />
                                                     </div>
                                                 </div>
@@ -141,8 +140,8 @@ function GalleryItem({ img, index }: { img: ProjectImage; index: number }) {
             transition={{ delay: index * 0.1 }}
             className="break-inside-avoid mb-6 relative group"
         >
-            <div className="bg-panel-border p-px w-full rounded-lg">
-                <div className="bg-panel-background w-full rounded-[0px] overflow-hidden relative">
+            <div className="bg-panel-border p-[2px] w-full rounded-[10px] shadow-card relative">
+                <div className="bg-panel-background w-full rounded-[9px] overflow-hidden relative z-1">
                     <img
                         src={img.url}
                         alt={img.description || img.caption || `Gallery image ${index + 1}`}

@@ -3,38 +3,51 @@
 @tailwind utilities;
 
 :root {
-  /* Light Mode (Default) */
-  --background: #ffffff;
-  --foreground: #0f0f0f;
-  --panel-border: #e5e5e5;
-  --panel-background: #f4f4f5;
-  --panel-hover: #e4e4e7;
-  --text-primary: #0f0f0f;
-  --text-secondary: #52525b;
-  --matcha: #2563eb;
-  /* Darker blue for light mode */
+  /* Light Mode - Soft Cool Gray Base & Jade Accent */
+  --neutral-background: #F9FAFB;
+  --background: var(--neutral-background);
+  --foreground: #111827;
+
+  /* Shades (Solid Colors - No Opacity) */
+  --panel-border: #d1d5db;
+  /* Sharper Edge */
+  --panel-background: #ffffff;
+  --panel-hover: #0055ff;
+
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+
+  --matcha: #111827;
+  /* Dark Accent (Black-ish) for Light Mode */
 
   --font-display: 'Bricolage Grotesque', sans-serif;
   --font-body: 'Lato', sans-serif;
 }
 
 .dark {
-  /* High Contrast Dark Mode */
-  --background: #000000;
-  --foreground: #ffffff;
-  --panel-border: #333333;
-  --panel-background: #0a0a0a;
-  /* Darker panel */
-  --panel-hover: #171717;
-  --text-primary: #ffffff;
-  --text-secondary: #d4d4d8;
-  --matcha: #4d7dff;
-  /* Original bright blue */
+  /* Dark Mode - Deep Zinc Base & Jade Accent */
+  --neutral-background: #080808;
+  --background: var(--neutral-background);
+  --foreground: #F3F4F6;
+
+  /* Shades (Solid Colors - No Opacity) */
+  --panel-border: #3f3f46;
+  /* Sharper Edge */
+  --panel-background: #121212;
+  --panel-hover: #27272a;
+
+  --text-primary: #F3F4F6;
+  --text-secondary: #9ca3af;
+
+  --matcha: #ffffff;
+  /* White Accent for Dark Mode */
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 body {

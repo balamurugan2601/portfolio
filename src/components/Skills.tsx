@@ -29,7 +29,7 @@ export default function Skills({ skills, section }: SkillsProps) {
                 >
                     Skills
                 </motion.h2>
-                <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+                <div className="flex flex-col gap-6 max-w-5xl mx-auto">
                     {Object.entries(skillsByCategory).map(([category, skills], idx) => (
                         <motion.div
                             key={category}
@@ -37,9 +37,9 @@ export default function Skills({ skills, section }: SkillsProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-panel-border p-px rounded-3xl"
+                            className="bg-panel-border p-[2px] rounded-[10px] shadow-card relative"
                         >
-                            <div className="bg-panel-background rounded-[23px] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                            <div className="bg-panel-background rounded-[9px] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 relative z-1">
                                 <div className="min-w-[140px] text-center md:text-left">
                                     <h3 className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
                                         {category}

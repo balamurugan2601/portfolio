@@ -5,12 +5,16 @@ type Theme = 'light' | 'dark';
 interface ThemeContextType {
     theme: Theme;
     toggleTheme: () => void;
+    accentColor: string | null;
+    setAccentColor: (color: string) => void;
+    resetAccentColor: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setTheme] = useState<Theme>('dark'); // Default to dark as per subtext "Dark mode recommended" implied default or preference
+    const [accentColor, setAccentColorState] = useState<string | null>(null);
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') as Theme | null;
@@ -25,13 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             setTheme('dark');
             document.documentElement.classList.add('dark');
         } else {
-            setTheme('dark'); // Explicitly defaulting to dark if unsure, or maybe light? The user seems to prefer dark. Let's stick to system or default dark.
-            // Actually, for "Light mode? Bold choice", let's behave standard.
-            // If system is light, default to light.
-            // Re-reading logic from ThemeToggle.tsx:
-            // if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches))
-            // So if no saved theme and system is light, it sets light.
-
+            setTheme('dark');
             // I will replicate the original logic exactly.
             if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 setTheme('dark');
@@ -42,6 +40,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             }
         }
     }, []);
+
+    const updateBackground = (color: string | null) => {
+        const root = document.documentElement;
+        if (color) {
+            // Mix 5% of accent into neutral background
+            root.style.setProperty('--background', `color-mix(in srgb, ${color} 5%, var(--neutral-background))`);
+        } else {
+            root.style.removeProperty('--background');
+        }
+    };
 
     const toggleTheme = () => {
         setTheme(prev => {
@@ -56,8 +64,34 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         });
     };
 
+    const setAccentColor = (color: string) => {
+        setAccentColorState(color);
+        updateBackground(color);
+        const root = document.documentElement;
+        root.style.setProperty('--matcha', color);
+        // Override global text and border colors with the selected accent
+        root.style.setProperty('--text-primary', color);
+        // For secondary text, we might want slightly less opacity or same color? 
+        // User said "all should change to selected color". 
+        // Using strict color might hurt hierarchy, but let's follow instruction.
+        // Maybe we can use opacity for secondary if the color format allows, but these are hex strings.
+        // Let's set them all to the selected color for the "Monochrome Tint" effect.
+        root.style.setProperty('--text-secondary', color);
+        root.style.setProperty('--panel-border', color);
+    };
+
+    const resetAccentColor = () => {
+        setAccentColorState(null);
+        updateBackground(null);
+        const root = document.documentElement;
+        root.style.removeProperty('--matcha');
+        root.style.removeProperty('--text-primary');
+        root.style.removeProperty('--text-secondary');
+        root.style.removeProperty('--panel-border');
+    };
+
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme, accentColor, setAccentColor, resetAccentColor }}>
             {children}
         </ThemeContext.Provider>
     );
