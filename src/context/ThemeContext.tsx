@@ -74,10 +74,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         // For secondary text, we might want slightly less opacity or same color? 
         // User said "all should change to selected color". 
         // Using strict color might hurt hierarchy, but let's follow instruction.
-        // Maybe we can use opacity for secondary if the color format allows, but these are hex strings.
         // Let's set them all to the selected color for the "Monochrome Tint" effect.
         root.style.setProperty('--text-secondary', color);
         root.style.setProperty('--panel-border', color);
+
+        // Adaptive Hover: Mix 15% of accent with background for a subtle, accessible hover state
+        root.style.setProperty('--panel-hover', `color-mix(in srgb, ${color} 15%, var(--neutral-background))`);
     };
 
     const resetAccentColor = () => {
@@ -88,6 +90,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         root.style.removeProperty('--text-primary');
         root.style.removeProperty('--text-secondary');
         root.style.removeProperty('--panel-border');
+        root.style.removeProperty('--panel-hover');
     };
 
     return (

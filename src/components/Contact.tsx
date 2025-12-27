@@ -161,7 +161,7 @@ export default function Contact({ profile, section }: ContactProps) {
                                                     href={link.url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="p-3 bg-panel-hover rounded-xl text-text-primary hover:text-accent hover:bg-panel-border transition-all border border-transparent hover:border-panel-border"
+                                                    className="p-3 bg-panel-hover rounded-xl text-text-primary hover:text-background hover:bg-panel-border transition-all border border-transparent hover:border-panel-border"
                                                 >
                                                     <Icon size={24} />
                                                 </motion.a>
