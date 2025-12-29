@@ -115,7 +115,7 @@ export const portfolioData: PortfolioData = {
             year: "2025",
             tags: ["Figma", "Affinity", "Photoshop", "Illustrator"],
             tagsLabel: "Tools",
-            link: "https://www.figma.com/design/Df8MMOMnPwyR49ouDboprY/DevFest-Salem-2025?node-id=0-1&t=rgG4vMqnAe282Z2c-1",
+            link: "https://www.figma.com/design/Df8MMOMnPwyR49ouDboprY/DevFest-Salem-2025?node-id=0-1&t=Fyhk4Tg0uPHPCGJ9-1",
             gallery: [
                 { url: "https://ik.imagekit.io/shyambala/devfest/RVG02678.jpg", description: "PHOTO POINT" }, { url: "https://ik.imagekit.io/shyambala/devfest/swags.png", description: "SWAGS" },
                 { url: "https://ik.imagekit.io/shyambala/devfest/certifcate.png", description: "CERTIFICATE" },

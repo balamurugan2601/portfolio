@@ -78,6 +78,7 @@ export default function ProjectDetails() {
                                     {/* Visit Link Section */}
                                     {project.link && (
                                         <a
+                                            href={project.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="block w-full bg-foreground text-background rounded-[10px] p-6 hover:opacity-90 transition-opacity shadow-lg group cursor-pointer relative overflow-hidden border-[2px] border-panel-border mt-2"
